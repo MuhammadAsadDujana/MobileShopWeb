@@ -1,0 +1,46 @@
+﻿@model MobileShopWeb.ViewModel.ProductVM
+
+@{
+    ViewData["Title"] = "ProductList";
+}
+
+<div class="container shadow p-5">
+
+    <div class="col mb-3">
+        <a asp-controller="Product" asp-action="Create" class="btn btn-primary"><i class="bi bi-file-plus-fill"></i>Create new product</a>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Brand Name</th>
+                <th scope="col">Colors</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.productAndColors)
+            {
+                <tr>
+                    <td>
+                        <div role="group" class="w-60 btn-group">
+                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+                            <a onclick="deleteProduct(@item.Id)" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i>Delete</a>
+                        </div>
+                    </td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.BrandName</td>
+                    <td>@item.Colors</td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+</div>
